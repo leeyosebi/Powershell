@@ -2,23 +2,24 @@
 Connect-AzureAD
 
 # Get the group by display name
-$GroupName = "M365 Help Desk"
-$Group = Get-AzureADGroup -All $true | Where-Object {$_.DisplayName -eq $GroupName}
+# This group's member will be added to the 'Target Group'
+$refGroupName = "regGroupName"
+$refGroup = Get-AzureADGroup -All $true | Where-Object {$_.DisplayName -eq $refGroupName}
 
-if ($Group) {
-    $GroupID = $Group.ObjectId
+if ($refGroup) {
+    $refGroupID = $refGroup.ObjectId
 
     # Get members of the group
-    $GroupMembers = Get-AzureADGroupMember -ObjectId $GroupID
+    $refGroupMembers = Get-AzureADGroupMember -ObjectId $refGroupID
 
     # Iterate through each member and add them to the group
-    foreach ($Member in $GroupMembers) {
-        Add-AzureADGroupMember -ObjectId $GroupID -RefObjectId $Member.ObjectId
+    foreach ($Member in $refGroupMembers) {
+        Add-AzureADGroupMember -ObjectId "Target Group ObjectID" -RefObjectId $Member.ObjectId
     }
 
-    Write-Host "Members added successfully to the group: $GroupName"
+    Write-Host "Members added successfully to the group"
 } else {
-    Write-Host "Group $GroupName not found."
+    Write-Host "Group TargetGroup not found."
 }
 
 # Disconnect from Azure AD
