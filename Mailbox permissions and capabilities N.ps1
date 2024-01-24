@@ -1,11 +1,12 @@
 # Mailbox permissions and capabilities NOT supported in hybrid environments
 
-    #Exchange management Shell
-    Add-RecipientPermission -Identity <그룹> -Trustee <EXO사서함> -AccessRights SendAs
-    #EXO
-    Add-ADPermission -Identity <그룹> -User <EXO사서함> -AccessRights ExtendedRight -ExtendedRights "Send As"
+    #Option1
+        #Exchange management Shell
+        Add-RecipientPermission -Identity <그룹> -Trustee <EXO사서함> -AccessRights SendAs
+        #EXO
+        Add-ADPermission -Identity <그룹> -User <EXO사서함> -AccessRights ExtendedRight -ExtendedRights "Send As"
 
-    #Using variable
+    #Option2: Using variable
         #Exchange Management Shell
         $TargetDL = Get-DistributionGroup -Identity A@domain.name
         $TargetADUser = $ADUsers | where {$_.UserprincipalName -eq user@domain.name}
