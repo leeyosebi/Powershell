@@ -1,6 +1,6 @@
 # Apply inheritance to the User's OU
 
-[array]$users = get-aduser -filter displayname -like *
+[array]$users = get-aduser -filter *
 
 ForEach($user in $users)
 {
