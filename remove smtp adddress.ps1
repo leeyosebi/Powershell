@@ -1,4 +1,5 @@
 Import-Module ActiveDirectory  
+
 $User = Get-ADUser john.smith -Properties proxyAddresses  
 $User.proxyAddresses.Remove("smtp:john.smith.mx360@contoso.com")  
 Set-ADUser -instance $User  
