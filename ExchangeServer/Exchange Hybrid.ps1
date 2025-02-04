@@ -1,6 +1,6 @@
-#Exchange Hybrid
+<#-------------------------------------------Exchange Hybrid Configuration-------------------------------------------#>
 
-#[Exchange Server]
+<#------------------------------------------- Phase 1: Exchange Server-------------------------------------------#>
 
 Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
 
@@ -48,7 +48,7 @@ Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
     New-AuthServer -Name 'EvoSts - eeebbbe0-5bab-442c-bdd6-24c37abf9f20' -AuthMetadataUrl 'https://login.windows.net/M365x66243491.onmicrosoft.com/federationmetadata/2007-06/federationmetadata.xml' -Type AzureAD
 
 
-# [Exchange Online]
+<#------------------------------------------- Phase 2: Exchange Online-------------------------------------------#>
     # 1. OrganisationRelationShip
     New-OrganizationRelationship -Name 'O365 to On-premises - 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -TargetApplicationUri $null -TargetAutodiscoverEpr $null -Enabled: $true -DomainNames 'CAKEPARTY.KRO.KR'
     Set-OrganizationRelationship -FreeBusyAccessEnabled: $true -FreeBusyAccessLevel LimitedDetails -TargetSharingEpr $null -MailTipsAccessEnabled: $true -MailTipsAccessLevel All -DeliveryReportEnabled: $true -PhotosEnabled: $true -TargetOwaURL 'https://mail.cakeparty.kro.kr/owa' -Identity 'O365 to On-premises - ManualHybrid'
