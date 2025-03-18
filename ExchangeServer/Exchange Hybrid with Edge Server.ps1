@@ -18,7 +18,7 @@ Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
         Set-HybridConfiguration -ClientAccessServers $null -ExternalIPAddresses $null -Domains 'jose.run.place' -OnPremisesSmartHost 'mail.jose.run.place' -TLSCertificateName '<I>CN=ZeroSSL RSA Domain Secure Site CA, O=ZeroSSL, C=AT<S>CN=jose.run.place' -SendingTransportServers $null -ReceivingTransportServers $null -EdgeTransportServers JOSEEDGE01 -Features FreeBusy,MoveMailbox,Mailtips,MessageTracking,OwaRedirection,OnlineArchive,SecureMail,CentralizedTransport,Photos
     
     # 2. OrgaisationRelationship
-    Set-OrganizationRelationship -TargetOwaURL 'https://outlook.office.com/mail' -Identity 'On-premises to O365 - b5979a4d-3184-4d53-add6-0db08a57fe7d'
+        Set-OrganizationRelationship -TargetOwaURL 'https://outlook.office.com/mail' -Identity 'On-premises to O365 - b5979a4d-3184-4d53-add6-0db08a57fe7d'
 
     #. 3 Connectors
         New-SendConnector -Name 'Outbound to Office 365 - b5979a4d-3184-4d53-add6-0db08a57fe7d' -AddressSpaces 'smtp:M365x67099404.mail.onmicrosoft.com;1' -DNSRoutingEnabled: $true -ErrorPolicies Default -Fqdn 'jose.run.place' -RequireTLS: $true -IgnoreSTARTTLS: $false -SourceTransportServers JOSEEDGE01 -SmartHosts $null -TLSAuthLevel DomainValidation -DomainSecureEnabled: $false -TLSDomain 'mail.protection.outlook.com' -CloudServicesMailEnabled: $true -TLSCertificateName '<I>CN=ZeroSSL RSA Domain Secure Site CA, O=ZeroSSL, C=AT<S>CN=jose.run.place'
