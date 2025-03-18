@@ -49,19 +49,19 @@ Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn
 
 
 <#------------------------------------------- Phase 2: Exchange Online-------------------------------------------#>
-    # 1. OrganisationRelationShip
+    # 0. OrganisationRelationShip
     New-OrganizationRelationship -Name 'O365 to On-premises - 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -TargetApplicationUri $null -TargetAutodiscoverEpr $null -Enabled: $true -DomainNames 'CAKEPARTY.KRO.KR'
     Set-OrganizationRelationship -FreeBusyAccessEnabled: $true -FreeBusyAccessLevel LimitedDetails -TargetSharingEpr $null -MailTipsAccessEnabled: $true -MailTipsAccessLevel All -DeliveryReportEnabled: $true -PhotosEnabled: $true -TargetOwaURL 'https://mail.cakeparty.kro.kr/owa' -Identity 'O365 to On-premises - ManualHybrid'
 
-    # 2. Connectors
+    # 1. Connectors
     New-InboundConnector -Name 'Inbound from 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -CloudServicesMailEnabled: $true -ConnectorSource HybridWizard -ConnectorType OnPremises -RequireTLS: $true -SenderDomains '*' -SenderIPAddresses $null -RestrictDomainsToIPAddresses: $false -TLSSenderCertificateName 'cakeparty.kro.kr' -AssociatedAcceptedDomains $null
     New-OutboundConnector -Name 'Outbound to 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -RecipientDomains '*' -SmartHosts 'mail.cakeparty.kro.kr' -ConnectorSource HybridWizard -ConnectorType OnPremises -TLSSettings DomainValidation -TLSDomain 'cakeparty.kro.kr' -CloudServicesMailEnabled: $true -RouteAllMessagesViaOnPremises: $true -UseMxRecord: $false -IsTransportRuleScoped: $false
 
-    # 3. Onpremisesorganization
+    # 2. Onpremisesorganization
     New-OnPremisesOrganization -HybridDomains 'CAKEPARTY.KRO.KR' -InboundConnector 'Inbound from 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -OutboundConnector 'Outbound to 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -OrganizationRelationship 'O365 to On-premises - 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -OrganizationName 'First Organization' -Name '3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -OrganizationGuid '3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d'
     New-IntraOrganizationConnector -Name 'HybridIOC - 3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -DiscoveryEndpoint 'https://mail.cakeparty.kro.kr/autodiscover/autodiscover.svc' -TargetAddressDomains 'CAKEPARTY.KRO.KR' -Enabled: $true
     
-    # Migration Endpoint
+    # 3. Migration Endpoint
     Test-MigrationServerAvailability -ExchangeRemoteMove: $true -RemoteServer 'mail.cakeparty.kro.kr' -Credentials (Get-Credential -UserName CAKEPARTY\cakepartysuper)
     New-MigrationEndpoint -Name '[CAKEPARTY]Hybrid Migration Endpoint - EWS (Default Web Site)' -ExchangeRemoteMove: $true -RemoteServer 'mail.cakeparty.kro.kr' -Credentials (Get-Credential -UserName CAKEPARTY\cakepartysuper)
     Set-OnPremisesOrganization -Identity '3f8e7a2d-1b45-4c89-a0d7-6f5b2e1c9a8d' -Comment 'Weird String'
