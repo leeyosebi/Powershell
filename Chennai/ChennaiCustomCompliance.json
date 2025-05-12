@@ -1,0 +1,60 @@
+{
+    "Rules": [
+      {
+        "SettingName": "SASE1Present",
+        "Operator": "IsEquals",
+        "DataType": "String",
+        "Operand": "yes",
+        "MoreInfoUrl": "https://abc.com",
+        "RemediationStrings":[ 
+          { 
+             "Language":"en_US",
+             "Title":"zScaler Service is not installed or running.",
+             "Description": "Please check the status of the zScaler."
+          }
+       ]
+      },
+      {
+        "SettingName": "SASE2Present",
+        "Operator": "IsEquals",
+        "DataType": "String",
+        "Operand": "yes",
+        "MoreInfoUrl": "https://abc.com",
+        "RemediationStrings":[ 
+          { 
+             "Language":"en_US",
+             "Title":"zScaler Service is not installed or running.",
+             "Description": "Please check the status of the zScaler."
+          }
+       ]
+      },
+      {
+        "SettingName": "ForcePointPresent",
+        "Operator": "IsEquals",
+        "DataType": "String",
+        "Operand": "yes",
+        "MoreInfoUrl": "https://abc.com",
+        "RemediationStrings":[ 
+          { 
+             "Language":"en_US",
+             "Title":"ForcePoint is not installed or running.",
+             "Description": "Please check the status of the ForcePOint."
+          }
+       ]
+      },
+      {
+        "SettingName": "FireEyepresent",
+        "Operator": "IsEquals",
+        "DataType": "String",
+        "Operand": "yes",
+        "MoreInfoUrl": "https://abc.com",
+        "RemediationStrings":[ 
+          { 
+             "Language":"en_US",
+             "Title":"FireEye is not installed or running.",
+             "Description": "Please check the status of the FireEye."
+          }
+       ]
+      }
+    ]
+  }
