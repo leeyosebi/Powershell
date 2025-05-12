@@ -64,7 +64,7 @@ if ([string]::IsNullOrEmpty($FireEye)) {
 #==================RESULTS==================
 $hash = @{ 
     #DLPPresent           = $DLPPresent
-    EDRPresent           = $EDRPresent
+    #EDRPresent           = $EDRPresent
     SASE1Present         = $SASE1Present
     SASE2Present         = $SASE2Present
     ForcePointPresent    = $ForcePointPresent
