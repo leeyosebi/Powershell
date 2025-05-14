@@ -19,7 +19,6 @@ if ([string]::IsNullOrEmpty($EDR)) {
 } else {
     $EDRPresent = "yes"
 }
-#>
 
 #------------------zScaler1------------------
 $ZSATunnel  = Get-Process -Name ZSATunnel*
@@ -30,9 +29,10 @@ if ([string]::IsNullOrEmpty($SASE1)) {
 } else {
     $SASE1Present = "yes"
 }
+#>
 
 #------------------zScaler2------------------
-$ZSAService = Get-Process -Name ZSAService*
+$ZSAService = Get-Process -Name ZSAService* -ErrorAction SilentlyContinue
 $SASE2      = $ZSAService.ProcessName
 
 if ([string]::IsNullOrEmpty($SASE2)) {
@@ -42,7 +42,7 @@ if ([string]::IsNullOrEmpty($SASE2)) {
 }
 
 #------------------FORCEPOINT ONE ENDPOINT------------------
-$ForcePointService = Get-Process -Name Dserui*
+$ForcePointService = Get-Process -Name Dserui* -ErrorAction SilentlyContinue
 $ForcePoint        = $ForcePointService.ProcessName
 
 if ([string]::IsNullOrEmpty($ForcePoint)) {
@@ -52,7 +52,7 @@ if ([string]::IsNullOrEmpty($ForcePoint)) {
 }
 
 #------------------FireEye Endpoint------------------
-$FireEyeService = Get-Process -Name xagt*
+$FireEyeService = Get-Process -Name xagt* -ErrorAction SilentlyContinue
 $FireEye        = $FireEyeService.ProcessName
 
 if ([string]::IsNullOrEmpty($FireEye)) {
@@ -65,7 +65,7 @@ if ([string]::IsNullOrEmpty($FireEye)) {
 $hash = @{ 
     #DLPPresent           = $DLPPresent
     #EDRPresent           = $EDRPresent
-    SASE1Present         = $SASE1Present
+    #SASE1Present         = $SASE1Present
     SASE2Present         = $SASE2Present
     ForcePointPresent    = $ForcePointPresent
     FireEyepresent       = $FireEyepresent

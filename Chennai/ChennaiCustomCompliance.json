@@ -1,20 +1,6 @@
 {
     "Rules": [
       {
-        "SettingName": "SASE1Present",
-        "Operator": "IsEquals",
-        "DataType": "String",
-        "Operand": "yes",
-        "MoreInfoUrl": "https://abc.com",
-        "RemediationStrings":[ 
-          { 
-             "Language":"en_US",
-             "Title":"zScaler Service is not installed or running.",
-             "Description": "Please check the status of the zScaler."
-          }
-       ]
-      },
-      {
         "SettingName": "SASE2Present",
         "Operator": "IsEquals",
         "DataType": "String",
