@@ -10,7 +10,7 @@ $newGroupId = "New Group ID"
 # Identify the policies
 $policies = Get-MgIdentityConditionalAccessPolicy -All | Where-Object {
     $_.Conditions.Users.IncludeGroups -contains $GroupId -or
-    $_.Conditions.Users.ExcludeGroups -contains $oldGroupId
+    $_.Conditions.Users.ExcludeGroups -contains $GroupId
 }
 
 foreach ($p in $policies) {
